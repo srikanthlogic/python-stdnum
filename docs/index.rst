@@ -239,11 +239,12 @@ Available formats
    imei
    imo
    imsi
-   in_.aadhaar
-   in_.epic
-   in_.gstin
-   in_.pan
-   in_.vid
+in_.aadhaar
+    in_.epic
+    in_.gstin
+    in_.pan
+    in_.tan
+    in_.vid
    is_.kennitala
    is_.vsk
    isan

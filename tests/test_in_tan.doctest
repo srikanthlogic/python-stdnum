@@ -1,0 +1,83 @@
+test_in_tan.doctest - more detailed doctests for stdnum.in_.tan module
+
+Copyright (C) 2024
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, see <https://www.gnu.org/licenses/>.
+
+
+This file contains more detailed doctests for the stdnum.in_.tan module. It
+tries to cover more corner cases and detailed functionality that is not
+really useful as module documentation.
+
+>>> from stdnum.in_ import tan
+>>> from stdnum.exceptions import *
+
+Test valid TAN numbers.
+
+>>> numbers = '''
+... AABB123456
+... ABCD123456
+... WXYY999999
+... MFHG000123
+...
+... '''
+>>> [x for x in numbers.splitlines() if x and not tan.is_valid(x)]
+[]
+
+Test lower case is converted to upper case.
+
+>>> tan.validate('abcd123456')
+'ABCD123456'
+>>> tan.validate('AbCd123456')
+'ABCD123456'
+
+Test invalid lengths.
+
+>>> tan.validate('ABCD12345')
+Traceback (most recent call last):
+    ...
+InvalidLength: ...
+>>> tan.validate('ABCD1234567')
+Traceback (most recent call last):
+    ...
+InvalidLength: ...
+
+Test invalid format (non-alphabetic in first 4 positions).
+
+>>> tan.validate('1234ABCD56')
+Traceback (most recent call last):
+    ...
+InvalidFormat: ...
+>>> tan.validate('ABCD1234AB')
+Traceback (most recent call last):
+    ...
+InvalidFormat: ...
+
+Test invalid characters O, I, Q in first 4 positions.
+
+>>> tan.validate('OBCX123456')
+Traceback (most recent call last):
+    ...
+InvalidComponent: ...
+>>> tan.is_valid('OBCX123456')
+False
+>>> tan.is_valid('ABCD123456')
+True
+
+Test format function.
+
+>>> tan.format(' ABCD123456 ')
+'ABCD123456'
+>>> tan.format('abcd 123456')
+'ABCD123456'

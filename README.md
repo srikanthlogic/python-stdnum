@@ -145,6 +145,7 @@ Currently this package supports the following formats:
  * EPIC (Electoral Photo Identity Card, Indian Voter ID)
  * GSTIN (Goods and Services Tax identification number, Indian VAT number)
  * PAN (Permanent Account Number, Indian income tax identifier)
+ * TAN (Tax Deduction and Collection Account Number, Indian tax identifier)
  * VID (Indian personal virtual identity number)
  * Kennitala (Icelandic personal and organisation identity code)
  * VSK number (Virðisaukaskattsnúmer, Icelandic VAT number)
